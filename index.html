@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nexus Dashboard</title>
+<title>Nexus Suporte</title>
 
 <style>
-/* RESET */
 *{
   margin:0;
   padding:0;
@@ -14,9 +13,9 @@
 }
 
 body{
-  font-family:system-ui, sans-serif;
-  color:#e5e7eb;
+  font-family:system-ui;
   background: radial-gradient(circle at top, #0b1220, #050814 70%);
+  color:#e5e7eb;
   overflow-x:hidden;
 }
 
@@ -27,20 +26,18 @@ body::before{
   inset:0;
   background-image: radial-gradient(rgba(59,130,246,0.15) 1px, transparent 1px);
   background-size: 40px 40px;
-  opacity:0.35;
-  animation:gridMove 18s linear infinite;
-  pointer-events:none;
+  opacity:0.3;
+  animation: moveGrid 18s linear infinite;
 }
 
 body::after{
   content:"";
   position:fixed;
   inset:-50%;
-  background: radial-gradient(circle at 30% 30%, rgba(0,150,255,0.15), transparent 40%),
-              radial-gradient(circle at 70% 60%, rgba(147,51,234,0.12), transparent 45%);
-  filter: blur(60px);
-  animation: floatGlow 12s ease-in-out infinite alternate;
-  pointer-events:none;
+  background: radial-gradient(circle at 30% 30%, rgba(0,140,255,0.2), transparent 40%),
+              radial-gradient(circle at 70% 60%, rgba(120,50,255,0.15), transparent 45%);
+  filter: blur(70px);
+  animation: glow 12s ease-in-out infinite alternate;
 }
 
 /* LAYOUT */
@@ -49,11 +46,11 @@ body::after{
   min-height:100vh;
 }
 
-/* SIDEBAR */
+/* MENU */
 .sidebar{
-  width:260px;
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(10px);
+  width:250px;
+  background: rgba(15,23,42,0.6);
+  backdrop-filter: blur(12px);
   border-right:1px solid #1e293b;
   padding:20px;
 }
@@ -70,16 +67,16 @@ body::after{
   display:block;
   padding:12px;
   margin:8px 0;
-  color:#cbd5e1;
-  text-decoration:none;
   border-radius:10px;
+  text-decoration:none;
+  color:#cbd5e1;
   transition:0.3s;
 }
 
 .menu a:hover{
-  background: rgba(56,189,248,0.1);
-  box-shadow:0 0 10px rgba(56,189,248,0.3);
+  background:rgba(56,189,248,0.1);
   color:#38bdf8;
+  box-shadow:0 0 15px rgba(56,189,248,0.2);
 }
 
 /* MAIN */
@@ -93,14 +90,14 @@ body::after{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:30px;
+  margin-bottom:25px;
 }
 
 .header h1{
   font-size:24px;
 }
 
-.btn{
+button{
   padding:10px 18px;
   border:none;
   border-radius:10px;
@@ -111,7 +108,7 @@ body::after{
   box-shadow:0 0 15px rgba(56,189,248,0.3);
 }
 
-.btn:hover{
+button:hover{
   transform:scale(1.05);
   box-shadow:0 0 25px rgba(56,189,248,0.6);
 }
@@ -124,10 +121,10 @@ body::after{
 }
 
 .card{
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(15,23,42,0.6);
   border:1px solid #1e293b;
-  padding:20px;
   border-radius:16px;
+  padding:20px;
   backdrop-filter: blur(10px);
   transition:0.3s;
 }
@@ -145,35 +142,34 @@ body::after{
 /* SUPORTE */
 .suporte{
   margin-top:30px;
-  background: rgba(15, 23, 42, 0.6);
-  border:1px solid #1e293b;
   padding:20px;
   border-radius:16px;
+  background: rgba(15,23,42,0.6);
+  border:1px solid #1e293b;
 }
 
-.suporte input,
-.suporte textarea{
+input, textarea{
   width:100%;
   margin-top:10px;
-  padding:10px;
+  padding:12px;
   border-radius:10px;
   border:1px solid #334155;
   background:#0b1220;
   color:white;
 }
 
-.suporte textarea{
+textarea{
   height:120px;
   resize:none;
 }
 
 /* ANIMAÇÕES */
-@keyframes gridMove{
+@keyframes moveGrid{
   from{transform:translateY(0);}
   to{transform:translateY(-40px);}
 }
 
-@keyframes floatGlow{
+@keyframes glow{
   0%{transform:translate(0,0);}
   100%{transform:translate(2%,-2%);}
 }
@@ -184,42 +180,39 @@ body::after{
 
 <div class="container">
 
-  <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="logo">⚡ NEXUS</div>
 
     <div class="menu">
       <a href="#">🏠 Dashboard</a>
-      <a href="#">📊 Relatórios</a>
+      <a href="#">📊 Status</a>
       <a href="#">👥 Usuários</a>
       <a href="#">💬 Chamados</a>
       <a href="#">⚙️ Configurações</a>
     </div>
   </div>
 
-  <!-- MAIN -->
   <div class="main">
 
     <div class="header">
-      <h1>Dashboard Principal</h1>
-      <button class="btn">+ Novo Chamado</button>
+      <h1>Central de Suporte</h1>
+      <button onclick="alert('Chamado aberto!')">+ Novo Chamado</button>
     </div>
 
-    <!-- CARDS -->
     <div class="cards">
       <div class="card">
-        <h3>Chamados Abertos</h3>
-        <p>12 ativos no sistema</p>
+        <h3>Chamados</h3>
+        <p>Ativos no sistema: 12</p>
       </div>
 
       <div class="card">
         <h3>Usuários</h3>
-        <p>48 conectados</p>
+        <p>Online agora: 48</p>
       </div>
 
       <div class="card">
-        <h3>Performance</h3>
-        <p>99.2% uptime</p>
+        <h3>Status</h3>
+        <p>Sistema estável</p>
       </div>
 
       <div class="card">
@@ -228,14 +221,13 @@ body::after{
       </div>
     </div>
 
-    <!-- SUPORTE -->
     <div class="suporte">
       <h3>🛠 Abrir Chamado</h3>
 
-      <input type="text" placeholder="Título do problema">
+      <input placeholder="Título do problema">
       <textarea placeholder="Descreva seu problema..."></textarea>
 
-      <button class="btn" style="margin-top:10px;">Enviar Chamado</button>
+      <button style="margin-top:10px;">Enviar Chamado</button>
     </div>
 
   </div>
