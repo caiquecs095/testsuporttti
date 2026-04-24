@@ -1,299 +1,884 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nexus Suporte</title>
-
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:system-ui, -apple-system, Segoe UI, Roboto;
-}
-
-body{
-  min-height:100vh;
-  background: radial-gradient(circle at top, #0f172a, #020617);
-  color:#e2e8f0;
-  overflow-x:hidden;
-}
-
-/* PARTICLES */
-#particles{
-  position:fixed;
-  inset:0;
-  z-index:-2;
-}
-
-.background-glow{
-  position:fixed;
-  inset:0;
-  background: radial-gradient(circle at 20% 20%, rgba(56,189,248,0.15), transparent 40%),
-              radial-gradient(circle at 80% 80%, rgba(167,139,250,0.15), transparent 40%);
-  animation: moveGlow 10s infinite alternate;
-  z-index:-1;
-}
-
-@keyframes moveGlow{
-  from{transform:scale(1) rotate(0deg)}
-  to{transform:scale(1.2) rotate(5deg)}
-}
-
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 40px;
-  background:rgba(15,23,42,0.6);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid #1e293b;
-}
-
-.logo{
-  font-size:20px;
-  font-weight:700;
-  letter-spacing:2px;
-  color:#38bdf8;
-  text-shadow:0 0 20px #38bdf8;
-}
-
-nav button{
-  background:transparent;
-  border:1px solid #334155;
-  color:#e2e8f0;
-  padding:10px 15px;
-  margin-left:10px;
-  border-radius:8px;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-nav button:hover{
-  background:#38bdf8;
-  color:#000;
-  box-shadow:0 0 20px #38bdf8;
-}
-
-.hero{
-  text-align:center;
-  padding:90px 20px 40px;
-}
-
-.hero h1{
-  font-size:52px;
-  background:linear-gradient(90deg,#38bdf8,#a78bfa,#22d3ee);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation: glow 3s infinite alternate;
-}
-
-@keyframes glow{
-  from{filter:drop-shadow(0 0 10px #38bdf8)}
-  to{filter:drop-shadow(0 0 25px #a78bfa)}
-}
-
-.typing{
-  margin-top:15px;
-  color:#60a5fa;
-  font-size:18px;
-  border-right:2px solid #60a5fa;
-  white-space:nowrap;
-  overflow:hidden;
-  width:0;
-  animation: typing 4s steps(40,end) forwards, blink 0.8s infinite;
-}
-
-@keyframes typing{
-  from{width:0}
-  to{width:100%}
-}
-
-@keyframes blink{
-  50%{border-color:transparent}
-}
-
-.hero-visual{
-  margin-top:30px;
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
-}
-
-.character{
-  width:120px;
-  height:120px;
-  border-radius:20px;
-  background:linear-gradient(145deg,#1e293b,#0f172a);
-  border:1px solid #334155;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:40px;
-  animation: float 4s ease-in-out infinite;
-  box-shadow:0 0 25px rgba(56,189,248,0.2);
-}
-
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-12px)}
-}
-
-.container{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-  padding:40px;
-}
-
-.card{
-  background:rgba(15,23,42,0.8);
-  border:1px solid #1e293b;
-  border-radius:15px;
-  padding:20px;
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:translateY(-5px) scale(1.02);
-  box-shadow:0 0 30px rgba(56,189,248,0.35);
-}
-
-.card h3{
-  color:#38bdf8;
-  margin-bottom:10px;
-}
-
-.neon-btn{
-  margin-top:15px;
-  padding:12px;
-  width:100%;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  color:#000;
-  font-weight:700;
-  background:linear-gradient(90deg,#38bdf8,#a78bfa);
-  box-shadow:0 0 20px #38bdf8;
-  transition:0.3s;
-}
-
-.neon-btn:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 50px #a78bfa;
-}
-
-footer{
-  text-align:center;
-  padding:20px;
-  color:#475569;
-}
-
-</style>
-</head>
-<body>
-
-<canvas id="particles"></canvas>
-<div class="background-glow"></div>
-
-<header>
-  <div class="logo">NEXUS SYSTEM</div>
-  <nav>
-    <button onclick="show('home')">Home</button>
-    <button onclick="show('suporte')">Suporte</button>
-    <button onclick="show('chamados')">Chamados</button>
-  </nav>
-</header>
-
-<section class="hero" id="home">
-  <h1>Sistema Vivo de Suporte</h1>
-  <div class="typing">IA ativa • Monitoramento em tempo real • Experiência futurista</div>
-
-  <div class="hero-visual">
-    <div class="character">🤖</div>
-    <div class="character">👨‍💻</div>
-    <div class="character">🚀</div>
-    <div class="character">🧠</div>
-  </div>
-</section>
-
-<section class="container" id="suporte">
-  <div class="card">
-    <h3>📡 Sistema Vivo</h3>
-    <p>Monitoramento em tempo real ativo</p>
-    <button class="neon-btn">Ver energia</button>
-  </div>
-
-  <div class="card">
-    <h3>⚡ Chamado Inteligente</h3>
-    <input placeholder="Descreva o problema" style="width:100%;padding:10px;border-radius:8px;border:none;margin-top:10px;">
-    <button class="neon-btn">Enviar IA</button>
-  </div>
-
-  <div class="card">
-    <h3>💬 IA Nexus</h3>
-    <p>“Estou analisando seu sistema em tempo real...”</p>
-  </div>
-</section>
-
-<section class="container" id="chamados" style="display:none;">
-  <div class="card">
-    <h3>🎫 Chamados</h3>
-    <p>Sistema ativo e monitorando solicitações</p>
-  </div>
-</section>
-
-<footer>
-  Nexus Suporte © 2026 - Sistema vivo inteligente
-</footer>
-
-<script>
-function show(id){
-  document.querySelectorAll('.container, .hero').forEach(el=>el.style.display='none');
-  document.getElementById(id).style.display='block';
-}
-
-// PARTICLES
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-for(let i=0;i<60;i++){
-  particles.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    r:Math.random()*2,
-    d:Math.random()*1
-  });
-}
-
-function draw(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="rgba(56,189,248,0.6)";
-  particles.forEach(p=>{
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true);
-    ctx.fill();
-  });
-  update();
-}
-
-function update(){
-  particles.forEach(p=>{
-    p.y += p.d;
-    if(p.y > canvas.height){
-      p.y = 0;
-      p.x = Math.random()*canvas.width;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futura TI | Suporte de Informática e Serviços de TI no Rio de Janeiro</title>
+    <meta name="description" content="A Futura TI oferece suporte de informática, redes, servidores e soluções em tecnologia para empresas no Rio de Janeiro. Planos a partir de R$ 499,99.">
+    <meta name="keywords" content="suporte de TI, suporte de informática, empresa de TI Rio de Janeiro, serviços de TI, manutenção de computadores, gestão de redes, Futura TI">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Futura TI | Suporte de Informática e Serviços de TI no Rio de Janeiro">
+    <meta property="og:description" content="Suporte de TI confiável para empresas no Rio de Janeiro. Infraestrutura estável, atendimento rápido e soluções sob medida.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://suporte.futurati.com.br">
+    <meta property="og:image" content="http://static.photos/technology/1200x630/10">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://huggingface.co/spaces/marcosrenatobraga/futurati-v2/resolve/main/images/FuturaTI_%C3%8Dcone.png">
+    
+    <!-- Styles & Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Modal Animation */
+        #thankYouModal > div {
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-pulse-slow {
+            animation: pulse 3s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        .whatsapp-flash {
+            animation: whatsappFlash 2s infinite;
+        }
+        @keyframes whatsappFlash {
+            0%, 100% { background-color: rgba(37, 211, 102, 0.1); }
+            50% { background-color: rgba(37, 211, 102, 0.3); }
+        }
+    </style>
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Futura TI",
+      "image": "http://static.photos/technology/1200x630/10",
+      "@id": "",
+      "url": "https://futurati.com.br",
+      "telephone": "+5521987528820",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Rio Branco",
+        "addressLocality": "Rio de Janeiro",
+        "addressRegion": "RJ",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -22.9068,
+        "longitude": -43.1729
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "sameAs": [
+        "https://www.instagram.com/futurati/",
+        "https://www.facebook.com/futurati/",
+        "https://www.linkedin.com/company/futurati/"
+      ]
     }
-  });
-}
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://huggingface.co/spaces/marcosrenatobraga/futurati-v2/resolve/main/images/FUTURATI_LOGO_350px.png" alt="Futura TI Logo" class="h-10">
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#inicio" class="text-gray-700 hover:text-primary-600 transition">Início</a>
+                <a href="#sobre" class="text-gray-700 hover:text-primary-600 transition">Sobre</a>
+                <a href="#servicos" class="text-gray-700 hover:text-primary-600 transition">Serviços</a>
+                <a href="#clientes" class="text-gray-700 hover:text-primary-600 transition">Clientes</a>
+                <a href="#preco" class="text-gray-700 hover:text-primary-600 transition">Preço</a>
+                <a href="#contato" class="text-gray-700 hover:text-primary-600 transition">Contato</a>
+                <a href="blog.html" class="text-gray-700 hover:text-primary-600 transition">Blog</a>
+            </nav>
+            
+            <a href="#contato" class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition shadow-md">
+                Solicitar Orçamento
+            </a>
+            
+            <!-- Mobile menu button -->
+            <button class="md:hidden text-gray-700">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </header>
 
-setInterval(draw,33);
-</script>
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-24 pb-16 bg-cover bg-center" style="background-image: url('https://huggingface.co/spaces/marcosrenatobraga/futurati-v2/resolve/main/images/tecnico-de-ti.jpg'); background-color: rgba(255, 255, 255, 0.8); background-blend-mode: lighten;">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <!-- Left Column - Text -->
+            <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Suporte de TI confiável para empresas no Rio de Janeiro
+                </h1>
+                <h2 class="text-xl text-gray-600 mb-8 text-left">
+                    Infraestrutura estável, atendimento rápido e soluções sob medida <br>
+                    para sua empresa crescer sem preocupações tecnológicas.
+                </h2>
+                <a href="#contato" class="bg-primary-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-primary-700 transition shadow-lg inline-block">
+                    Fale com nossos especialistas
+                </a>
+            </div>
+            
+            <!-- Right Column - Carousel -->
+            <div class="md:w-1/2" data-aos="fade-left">
+                <div class="relative overflow-hidden rounded-xl shadow-2xl">
+                    <div class="carousel">
+                        <img src="https://huggingface.co/spaces/marcosrenatobraga/futurati-v2/resolve/main/images/14c410f0-2243-40c4-b4ef-4eea936f09b2.png" alt="Técnico de TI prestando suporte" class="w-full h-[500px] object-cover">
+                        <img src="https://huggingface.co/spaces/marcosrenatobraga/futurati-v2/resolve/main/images/b6c131b2-b6a1-46dc-b08d-4ee7a12fc939.png" alt="Servidores e datacenter" class="w-full h-[500px] object-cover hidden">
+                        <img src="https://huggingface.co/spaces/marcosrenatobraga/futurati-v2/resolve/main/images/33d504a6-3820-402b-afe0-03e88d26ac79.png" alt="Suporte remoto e atendimento" class="w-full h-[500px] object-cover hidden">
+                        <img src="https://huggingface.co/spaces/marcosrenatobraga/futurati-v2/resolve/main/images/Tecnico1.png" alt="Técnico de TI trabalhando" class="w-full h-[500px] object-cover hidden">
+                    </div>
+                    <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                        <button class="w-3 h-3 rounded-full bg-white"></button>
+                        <button class="w-3 h-3 rounded-full bg-gray-300"></button>
+                        <button class="w-3 h-3 rounded-full bg-gray-300"></button>
+                        <button class="w-3 h-3 rounded-full bg-gray-300"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- About Section -->
+    <section id="sobre" class="py-20 bg-gradient-to-br from-blue-50 via-white to-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-800 mb-8">Sobre a Futura TI</h2>
+                <div class="max-w-5xl mx-auto">
+                    <p class="text-xl text-gray-600 leading-relaxed text-justify mb-6">
+                        A Futura Tecnologia da Informação é uma empresa especializada em oferecer soluções completas em suporte de TI, infraestrutura e segurança digital. Nosso compromisso é garantir que sua empresa tenha uma tecnologia confiável, estável e alinhada às suas necessidades estratégicas.
+                    </p>
+                    <p class="text-xl text-gray-600 leading-relaxed text-justify">
+                        Com uma equipe altamente qualificada, trabalhamos de forma proativa, monitorando e prevenindo falhas para manter sua operação sempre disponível. Nosso objetivo é ser mais do que um prestador de serviços: queremos ser o parceiro de confiança que apoia o crescimento e a continuidade do seu negócio.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Features with Blue Background -->
+            <div class="bg-primary-600 bg-opacity-70 rounded-2xl p-8 mb-16" data-aos="fade-up" data-aos-delay="100">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center text-white">
+                        <div class="text-4xl font-bold mb-2">200+</div>
+                        <div class="font-medium">Empresas Atendidas</div>
+                    </div>
+                    <div class="text-center text-white">
+                        <div class="text-4xl font-bold mb-2">99.9%</div>
+                        <div class="font-medium">Uptime Garantido</div>
+                    </div>
+                    <div class="text-center text-white">
+                        <div class="text-4xl font-bold mb-2">24/7</div>
+                        <div class="font-medium">Suporte Disponível</div>
+                    </div>
+                    <div class="text-center text-white">
+                        <div class="text-4xl font-bold mb-2">15min</div>
+                        <div class="font-medium">Tempo de Resposta</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-gray-50 p-8 rounded-2xl shadow-lg border border-blue-100 transform hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-primary-600 mb-4 flex justify-center">
+                        <i data-feather="users" class="w-12 h-12"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Equipe Especializada</h3>
+                    <p class="text-gray-600 text-center">Profissionais certificados com mais de 10 anos de experiência em TI empresarial.</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-blue-50 to-gray-50 p-8 rounded-2xl shadow-lg border border-blue-100 transform hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-primary-600 mb-4 flex justify-center">
+                        <i data-feather="map-pin" class="w-12 h-12"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Presença Local</h3>
+                    <p class="text-gray-600 text-center">Localizada no Rio de Janeiro, oferecemos atendimento presencial e remoto.</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-blue-50 to-gray-50 p-8 rounded-2xl shadow-lg border border-blue-100 transform hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-primary-600 mb-4 flex justify-center">
+                        <i data-feather="award" class="w-12 h-12"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Qualidade Comprovada</h3>
+                    <p class="text-gray-600 text-center">Mais de 200 empresas confiam em nossos serviços de suporte e infraestrutura.</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-blue-50 to-gray-50 p-8 rounded-2xl shadow-lg border border-blue-100 transform hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-primary-600 mb-4 flex justify-center">
+                        <i data-feather="clock" class="w-12 h-12"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Resposta Rápida</h3>
+                    <p class="text-gray-600 text-center">Tempo médio de resposta de 15 minutos para chamados críticos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4" data-aos="fade-up">Nossos Serviços</h2>
+            <p class="text-xl text-gray-600 text-center mb-12" data-aos="fade-up" data-aos-delay="100">
+                Oferecemos soluções completas de TI para empresas no Rio de Janeiro, com foco em qualidade, agilidade e resultados.
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-primary-600 mb-4">
+                        <i data-feather="settings" class="w-12 h-12"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Suporte Técnico de TI</h3>
+                    <p class="text-gray-600 mb-3">Atendimento remoto e presencial com agilidade. Suporte técnico especializado no Rio de Janeiro.</p>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Atendimento remoto 24h
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Visitas presenciais no RJ
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Suporte para Windows e Linux
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Resolução de problemas de hardware
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-primary-600 mb-4">
+                        <i data-feather="activity" class="w-12 h-12"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Monitoramento de Rede e Servidores</h3>
+                    <p class="text-gray-600 mb-3">Controle 24h para evitar falhas. Monitoramento proativo de rede e servidores 24 horas por dia.</p>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Monitoramento 24/7
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Alertas em tempo real
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Relatórios detalhados
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Manutenção preventiva
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-primary-600 mb-4">
+                        <i data-feather="hard-drive" class="w-12 h-12"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Backup em Nuvem e Segurança de Dados</h3>
+                    <p class="text-gray-600 mb-3">Proteção contra perdas e ataques. Soluções completas de backup em nuvem e segurança de dados empresariais.</p>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Backup automático diário
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Criptografia avançada
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Proteção contra ransomware
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Recuperação rápida de dados
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-primary-600 mb-4">
+                        <i data-feather="server" class="w-12 h-12"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Implantação de Sistemas e Infraestrutura</h3>
+                    <p class="text-gray-600 mb-3">Soluções sob medida para sua empresa. Implantação completa de sistemas e infraestrutura de TI sob medida.</p>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Análise de necessidades
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Projeto personalizado
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Implementação completa
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Treinamento da equipe
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="500">
+                    <div class="text-primary-600 mb-4">
+                        <i data-feather="briefcase" class="w-12 h-12"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Consultoria em TI Estratégica</h3>
+                    <p class="text-gray-600 mb-3">Transforme a tecnologia em vantagem competitiva.</p>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Planejamento de infraestrutura
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Alinhamento da TI com os objetivos do negócio
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Avaliação de custos e ROI em tecnologia
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Sugestão de inovações digitais
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="600">
+                    <div class="text-primary-600 mb-4">
+                        <i data-feather="cloud" class="w-12 h-12"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Cloud Computing e Virtualização</h3>
+                    <p class="text-gray-600 mb-3">Mais flexibilidade e escalabilidade para o seu negócio.</p>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Migração de servidores para a nuvem
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Hospedagem de sistemas e dados
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Ambientes virtuais sob demanda
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check" class="w-4 h-4 text-primary-600 mr-2"></i>
+                            Redução de custos com infraestrutura física
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clientes" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4" data-aos="fade-up">Nossos mais novos clientes</h2>
+            <p class="text-xl text-gray-600 text-center mb-12" data-aos="fade-up" data-aos-delay="100">
+                Mais de 200 empresas no Rio de Janeiro confiam em nossos serviços de TI
+            </p>
+            
+            <!-- Client Logos -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12" data-aos="fade-up">
+                <div class="p-6 flex items-center justify-center h-20 group">
+                    <img src="https://huggingface.co/spaces/marcosrenatobraga/futurati-v2/resolve/main/images/china-in-box-49586.png" alt="China in Box" class="max-h-12 max-w-full grayscale group-hover:grayscale-0 transition-all duration-300">
+                </div>
+                <div class="p-6 flex items-center justify-center h-20 group">
+                    <img src="https://huggingface.co/spaces/marcosrenatobraga/futurati-v2/resolve/main/images/cropped-Logo-Emagrecentro-4.png" alt="Emagrecentro" class="max-h-12 max-w-full grayscale group-hover:grayscale-0 transition-all duration-300">
+                </div>
+                <div class="p-6 flex items-center justify-center h-20 group">
+                    <img src="https://huggingface.co/spaces/marcosrenatobraga/futurati-v2/resolve/main/images/JOLL-RCH.webp" alt="Joll RCH" class="max-h-12 max-w-full grayscale group-hover:grayscale-0 transition-all duration-300">
+                </div>
+                <div class="p-6 flex items-center justify-center h-20 group">
+                    <img src="https://huggingface.co/spaces/marcosrenatobraga/futurati-v2/resolve/main/images/contabilidade.png" alt="Contabilidade" class="max-h-12 max-w-full grayscale group-hover:grayscale-0 transition-all duration-300">
+                </div>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-primary-50 p-8 rounded-xl">
+                    <div class="flex mb-4">
+                        <i data-feather="star" class="text-yellow-400 w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="text-yellow-400 w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="text-yellow-400 w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="text-yellow-400 w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="text-yellow-400 w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4" id="testimonial-text">
+                        "A Futura TI revolucionou nossa infraestrutura de TI. Agora temos estabilidade e suporte rápido para focar no crescimento do negócio."
+                    </p>
+                    <p class="font-semibold text-gray-800" id="testimonial-author">- João Silva, Diretor da Empresa XYZ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="preco" class="py-16 bg-gradient-to-r from-blue-700 to-blue-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-4">Oferta especial no plano de suporte</h2>
+                <p class="text-2xl mb-2">Planos a partir de</p>
+                <div class="text-5xl font-bold text-white mb-6">
+                    R$ 499,99<span class="text-2xl">/mês</span>
+                </div>
+                <p class="text-white/80 mb-6">Para até 8 computadores</p>
+                <a href="#contato" class="bg-white text-primary-700 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition shadow-2xl inline-block animate-pulse-slow" data-aos="fade-up" data-aos-delay="200">
+                    Solicite seu orçamento agora
+                </a>
+            </div>
+            
+            <!-- Plan Details -->
+            <div class="max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="300">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-300 mr-2 shrink-0"></i>
+                        <span class="text-sm md:text-base">Atendimento Presencial</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-300 mr-2 shrink-0"></i>
+                        <span class="text-sm md:text-base">Atendimento remoto 24h</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-300 mr-2 shrink-0"></i>
+                        <span class="text-sm md:text-base">Resposta em até 15 minutos</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-300 mr-2 shrink-0"></i>
+                        <span class="text-sm md:text-base">Monitoramento 24/7</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-300 mr-2 shrink-0"></i>
+                        <span class="text-sm md:text-base">Alertas proativos</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-300 mr-2 shrink-0"></i>
+                        <span class="text-sm md:text-base">Relatórios mensais</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-300 mr-2 shrink-0"></i>
+                        <span class="text-sm md:text-base">Backup automático</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-300 mr-2 shrink-0"></i>
+                        <span class="text-sm md:text-base">Antivírus empresarial</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-300 mr-2 shrink-0"></i>
+                        <span class="text-sm md:text-base">Atualizações de segurança</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Custom Plans Note -->
+            <div class="text-center mt-8" data-aos="fade-up" data-aos-delay="400">
+                <p class="text-white/80 text-sm">
+                    * Planos personalizados para empresas com mais de 8 computadores
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Entre em Contato</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div data-aos="fade-right">
+                    <form class="bg-white p-8 rounded-xl shadow-md" id="contactForm">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 mb-2">Nome</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 mb-2">E-mail</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="phone" class="block text-gray-700 mb-2">Telefone</label>
+                            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 mb-2">Mensagem</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary-600 text-white py-3 rounded-lg font-semibold hover:bg-primary-700 transition">
+                            <span class="submit-text">Solicite um Orçamento</span>
+                            <span class="loading hidden">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Enviando...
+                            </span>
+                        </button>
+                    </form>
+                    <script>
+                        document.getElementById('contactForm').addEventListener('submit', function(e) {
+                            e.preventDefault();
+                            const submitBtn = this.querySelector('button[type="submit"]');
+                            const submitText = submitBtn.querySelector('.submit-text');
+                            const loading = submitBtn.querySelector('.loading');
+                            
+                            submitText.classList.add('hidden');
+                            loading.classList.remove('hidden');
+                            submitBtn.disabled = true;
+                            
+                            // Send form data via email
+                            const formData = new FormData(this);
+                            const data = {
+                                name: formData.get('name'),
+                                email: formData.get('email'),
+                                phone: formData.get('phone'),
+                                message: formData.get('message')
+                            };
+                            
+                            // Use FormSubmit to send the email
+                            fetch('https://formsubmit.co/ajax/suporte@futurati.com.br', {
+                                method: 'POST',
+                                headers: { 
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                },
+                                body: JSON.stringify(data)
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                showThankYouModal();
+                                this.reset();
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                showThankYouModal(); // Still show thank you even if there's an error
+                            })
+                            .finally(() => {
+                                submitText.classList.remove('hidden');
+                                loading.classList.add('hidden');
+                                submitBtn.disabled = false;
+                            });
+                        });
+                    </script>
+                </div>
+                
+                <!-- Contact Info -->
+                <div data-aos="fade-left">
+                    <div class="bg-white p-8 rounded-xl shadow-md mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Informações de Contato</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i data-feather="phone" class="text-primary-600 w-5 h-5 mt-1 mr-4"></i>
+                                <div>
+                                    <p class="text-gray-700 font-semibold">Telefone</p>
+                                    <p class="text-gray-600">(21) 2042-2355</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i data-feather="mail" class="text-primary-600 w-5 h-5 mt-1 mr-4"></i>
+                                <div>
+                                    <p class="text-gray-700 font-semibold">E-mail</p>
+                                    <p class="text-gray-600">suporte@futurati.com.br</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i data-feather="map-pin" class="text-primary-600 w-5 h-5 mt-1 mr-4"></i>
+                                <div>
+                                    <p class="text-gray-700 font-semibold">Avenida Rio Branco, 115 - Centro</p>
+                                    <p class="text-gray-600">Rio de Janeiro, RJ</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i data-feather="clock" class="text-primary-600 w-5 h-5 mt-1 mr-4"></i>
+                                <div>
+                                    <p class="text-gray-700 font-semibold">Horários de Atendimento</p>
+                                    <p class="text-gray-600">Segunda a Sexta: 8h às 18h</p>
+                                    <p class="text-gray-600">Sábados: 8h às 12h</p>
+                                    <p class="text-gray-600">Emergências: 24h por dia</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Emergency WhatsApp -->
+                    <div class="whatsapp-flash p-6 rounded-xl border border-green-400">
+                        <div class="flex items-center mb-3">
+                            <i data-feather="alert-circle" class="text-green-600 w-6 h-6 mr-3"></i>
+                            <h3 class="text-lg font-semibold text-gray-800">Emergência 24 horas</h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">Problemas críticos que exigem atendimento imediato?</p>
+                        <a href="https://wa.me/5521987528820" class="flex items-center justify-center bg-green-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-green-700 transition">
+                            <i data-feather="message-circle" class="w-5 h-5 mr-2"></i>
+                            Chamar no WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <img src="https://huggingface.co/spaces/marcosrenatobraga/futurati-v2/resolve/main/images/FUTURATI_LOGOH2BRANCO2.png" alt="Futura TI Logo" class="h-10 mb-4">
+                    <p class="text-gray-300">Suporte de informática e serviços de TI especializados para empresas no Rio de Janeiro.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Links Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#inicio" class="text-gray-300 hover:text-white transition">Início</a></li>
+                        <li><a href="#sobre" class="text-gray-300 hover:text-white transition">Sobre</a></li>
+                        <li><a href="#servicos" class="text-gray-300 hover:text-white transition">Serviços</a></li>
+                        <li><a href="#clientes" class="text-gray-300 hover:text-white transition">Clientes</a></li>
+                        <li><a href="#preco" class="text-gray-300 hover:text-white transition">Preço</a></li>
+                        <li><a href="#contato" class="text-gray-300 hover:text-white transition">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Redes Sociais</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="facebook" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="instagram" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="linkedin" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>© 2025 Futura TI – Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Thank You Modal
+        const thankYouModal = document.createElement('div');
+        thankYouModal.id = 'thankYouModal';
+        thankYouModal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden';
+        thankYouModal.innerHTML = `
+            <div class="bg-white rounded-xl shadow-2xl max-w-md w-full mx-4 relative">
+                <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </button>
+                <div class="p-8 text-center">
+                    <div class="text-primary-600 mb-4">
+                        <i data-feather="check-circle" class="w-12 h-12 mx-auto"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Obrigado pelo contato!</h3>
+                    <p class="text-gray-600 mb-6">Nossa equipe recebeu sua mensagem e em breve retornaremos.</p>
+                    <button class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(thankYouModal);
+
+        // Modal functions
+        function showThankYouModal() {
+            const modal = document.getElementById('thankYouModal');
+            modal.classList.remove('hidden');
+            feather.replace();
+            
+            // Close buttons
+            modal.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modal.classList.add('hidden');
+                });
+            });
+        }
+
+        // Close modal when clicking outside
+        thankYouModal.addEventListener('click', (e) => {
+            if (e.target === thankYouModal) {
+                thankYouModal.classList.add('hidden');
+            }
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Re-init feather icons when modal opens
+        document.addEventListener('feather.replace', function() {
+            if (!document.getElementById('thankYouModal').classList.contains('hidden')) {
+                feather.replace({ class: 'modal-feather' });
+            }
+        });
+        
+        // Simple carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselImages = document.querySelectorAll('.carousel img');
+            let currentIndex = 0;
+            
+            function showNextImage() {
+                carouselImages[currentIndex].classList.add('hidden');
+                currentIndex = (currentIndex + 1) % carouselImages.length;
+                carouselImages[currentIndex].classList.remove('hidden');
+                
+                // Update indicators
+                const indicators = document.querySelectorAll('.carousel ~ div button');
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('bg-white', index === currentIndex);
+                    indicator.classList.toggle('bg-gray-300', index !== currentIndex);
+                });
+            }
+            
+            // Auto-rotate carousel every 4 seconds
+            setInterval(showNextImage, 5000);
+            
+            // Manual navigation
+            const indicators = document.querySelectorAll('.carousel ~ div button');
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    carouselImages[currentIndex].classList.add('hidden');
+                    currentIndex = index;
+                    carouselImages[currentIndex].classList.remove('hidden');
+                    
+                    indicators.forEach((ind, i) => {
+                        ind.classList.toggle('bg-white', i === currentIndex);
+                        ind.classList.toggle('bg-gray-300', i !== currentIndex);
+                    });
+                });
+            });
+            
+            // Testimonials rotation
+            const testimonials = [
+                {
+                    text: "Depois que contratamos a Futura Tecnologia da Informação, nossa rotina mudou completamente. O suporte é rápido e sempre prestativo, o que nos trouxe mais tranquilidade para focar no nosso negócio. Hoje temos uma infraestrutura estável e confiável.",
+                    author: "Maria Fernandes, China in Box"
+                },
+                {
+                    text: "Tínhamos constantes falhas de rede que atrapalhavam a produtividade da equipe. Com o monitoramento 24 horas, os problemas foram eliminados e agora trabalhamos com muito mais segurança. É um serviço que realmente vale a pena.",
+                    author: "Marcos Crespo , Crespo Contabilidade"
+                },
+                {
+                    text: "Além da segurança dos nossos dados, conseguimos reduzir custos em manutenção e prevenção de falhas. A equipe é atenciosa e sempre disponível para esclarecer dúvidas. Sem dúvida, uma parceria que trouxe resultados positivos para nosso escritório.",
+                    author: "Patrícia Gomes, FRS Advogados"
+                },
+                {
+                    text: "O grande diferencial é a proatividade. Eles identificam riscos antes mesmo de virar um problema e isso garante que nossa operação não pare. Essa confiança faz com que eu recomende os serviços de olhos fechados.",
+                    author: "Carlos Henrique, Emagrecentro"
+                },
+                {
+                    text: "Nosso time depende de sistemas funcionando o tempo todo. Com o suporte remoto, qualquer problema é resolvido em minutos, sem atrapalhar as vendas. Isso trouxe mais produtividade e confiança para o setor.",
+                    author: "Aurélio Almeida, A&T Apart-Hotéis"
+                },
+                {
+                    text: "Não entendo muito de tecnologia, mas a equipe conseguiu me explicar tudo de forma clara e simples. Além disso, o atendimento é sempre educado e eficiente. Hoje sei que meus dados e sistemas estão em boas mãos.",
+                    author: "Fernanda Oliveira, Stic Sindicato"
+                },
+                {
+                    text: "Gerenciar TI internamente era um desafio enorme para a Joll. Desde que terceirizamos com a Futura TI, ganhamos tempo e segurança para focar no crescimento. Eles são parceiros estratégicos no nosso desenvolvimento.",
+                    author: "Helena Campos, Joll Consultoria"
+                },
+                {
+                    text: "Precisávamos migrar para a nuvem e temíamos complicações no processo. Fomos surpreendidos positivamente pela agilidade e organização da equipe. Tudo foi feito dentro do prazo e com total segurança. Ficamos muito satisfeitos.",
+                    author: "Ana Beatriz, Tomaz e Araujo Advogados"
+                }
+            ];
+            
+            const testimonialText = document.getElementById('testimonial-text');
+            const testimonialAuthor = document.getElementById('testimonial-author');
+            let currentTestimonial = 0;
+            
+            function showNextTestimonial() {
+                currentTestimonial = Math.floor(Math.random() * testimonials.length);
+                testimonialText.textContent = `"${testimonials[currentTestimonial].text}"`;
+                testimonialAuthor.textContent = `- ${testimonials[currentTestimonial].author}`;
+            }
+            
+            // Rotate testimonials every 8 seconds
+            setInterval(showNextTestimonial, 8000);
+        });
+    </script>
 </body>
 </html>
