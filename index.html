@@ -809,31 +809,47 @@
                 currentIndex = (currentIndex + 1) % carouselImages.length;
                 carouselImages[currentIndex].classList.remove('hidden');
                 
-                // Update indicators
-                const indicators = document.querySelectorAll('.carousel ~ div button');
-                indicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('bg-white', index === currentIndex);
-                    indicator.classList.toggle('bg-gray-300', index !== currentIndex);
-                });
-            }
-            
-            // Auto-rotate carousel every 4 seconds
-            setInterval(showNextImage, 5000);
-            
-            // Manual navigation
-            const indicators = document.querySelectorAll('.carousel ~ div button');
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    carouselImages[currentIndex].classList.add('hidden');
-                    currentIndex = index;
-                    carouselImages[currentIndex].classList.remove('hidden');
-                    
-                    indicators.forEach((ind, i) => {
-                        ind.classList.toggle('bg-white', i === currentIndex);
-                        ind.classList.toggle('bg-gray-300', i !== currentIndex);
-                    });
-                });
-            });
+                document.addEventListener('DOMContentLoaded', function () {
+    const images = document.querySelectorAll('.carousel img');
+    const indicators = document.querySelectorAll('.carousel ~ div button');
+
+    let currentIndex = 0;
+    let interval;
+
+    function updateSlider(index) {
+        images.forEach((img, i) => {
+            img.classList.toggle('hidden', i !== index);
+        });
+
+        indicators.forEach((btn, i) => {
+            btn.classList.toggle('bg-white', i === index);
+            btn.classList.toggle('bg-gray-300', i !== index);
+        });
+
+        currentIndex = index;
+    }
+
+    function nextImage() {
+        let next = (currentIndex + 1) % images.length;
+        updateSlider(next);
+    }
+
+    function startSlider() {
+        updateSlider(0); // 🔥 garante estado inicial correto
+        interval = setInterval(nextImage, 5000);
+    }
+
+    // clique manual
+    indicators.forEach((btn, i) => {
+        btn.addEventListener('click', () => {
+            clearInterval(interval);
+            updateSlider(i);
+            startSlider(); // reinicia ciclo
+        });
+    });
+
+    startSlider();
+});
             
             // Testimonials rotation
             const testimonials = [
