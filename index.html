@@ -1,245 +1,299 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Nexus Suporte</title>
 
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui, -apple-system, Segoe UI, Roboto;
 }
 
 body{
-  font-family:system-ui;
-  background: radial-gradient(circle at top, #0b1220, #050814 70%);
-  color:#e5e7eb;
-  overflow-x:hidden;
+  min-height:100vh;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color:#e2e8f0;
+  overflow-x:hidden;
 }
 
-/* FUNDO FUTURISTA */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background-image: radial-gradient(rgba(59,130,246,0.15) 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity:0.3;
-  animation: moveGrid 18s linear infinite;
+/* PARTICLES */
+#particles{
+  position:fixed;
+  inset:0;
+  z-index:-2;
 }
 
-body::after{
-  content:"";
-  position:fixed;
-  inset:-50%;
-  background: radial-gradient(circle at 30% 30%, rgba(0,140,255,0.2), transparent 40%),
-              radial-gradient(circle at 70% 60%, rgba(120,50,255,0.15), transparent 45%);
-  filter: blur(70px);
-  animation: glow 12s ease-in-out infinite alternate;
+.background-glow{
+  position:fixed;
+  inset:0;
+  background: radial-gradient(circle at 20% 20%, rgba(56,189,248,0.15), transparent 40%),
+              radial-gradient(circle at 80% 80%, rgba(167,139,250,0.15), transparent 40%);
+  animation: moveGlow 10s infinite alternate;
+  z-index:-1;
 }
 
-/* LAYOUT */
-.container{
-  display:flex;
-  min-height:100vh;
+@keyframes moveGlow{
+  from{transform:scale(1) rotate(0deg)}
+  to{transform:scale(1.2) rotate(5deg)}
 }
 
-/* MENU */
-.sidebar{
-  width:250px;
-  background: rgba(15,23,42,0.6);
-  backdrop-filter: blur(12px);
-  border-right:1px solid #1e293b;
-  padding:20px;
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  background:rgba(15,23,42,0.6);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid #1e293b;
 }
 
 .logo{
-  font-size:22px;
-  font-weight:bold;
-  color:#38bdf8;
-  margin-bottom:30px;
-  text-shadow:0 0 10px #38bdf8;
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:2px;
+  color:#38bdf8;
+  text-shadow:0 0 20px #38bdf8;
 }
 
-.menu a{
-  display:block;
-  padding:12px;
-  margin:8px 0;
-  border-radius:10px;
-  text-decoration:none;
-  color:#cbd5e1;
-  transition:0.3s;
+nav button{
+  background:transparent;
+  border:1px solid #334155;
+  color:#e2e8f0;
+  padding:10px 15px;
+  margin-left:10px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-.menu a:hover{
-  background:rgba(56,189,248,0.1);
-  color:#38bdf8;
-  box-shadow:0 0 15px rgba(56,189,248,0.2);
+nav button:hover{
+  background:#38bdf8;
+  color:#000;
+  box-shadow:0 0 20px #38bdf8;
 }
 
-/* MAIN */
-.main{
-  flex:1;
-  padding:30px;
+.hero{
+  text-align:center;
+  padding:90px 20px 40px;
 }
 
-/* HEADER */
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:25px;
-}
-
-.header h1{
-  font-size:24px;
-}
-
-button{
-  padding:10px 18px;
-  border:none;
-  border-radius:10px;
-  background:linear-gradient(90deg,#38bdf8,#6366f1);
-  color:white;
-  cursor:pointer;
-  transition:0.3s;
-  box-shadow:0 0 15px rgba(56,189,248,0.3);
-}
-
-button:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 25px rgba(56,189,248,0.6);
-}
-
-/* CARDS */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-}
-
-.card{
-  background: rgba(15,23,42,0.6);
-  border:1px solid #1e293b;
-  border-radius:16px;
-  padding:20px;
-  backdrop-filter: blur(10px);
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 0 25px rgba(56,189,248,0.2);
-}
-
-.card h3{
-  color:#38bdf8;
-  margin-bottom:10px;
-}
-
-/* SUPORTE */
-.suporte{
-  margin-top:30px;
-  padding:20px;
-  border-radius:16px;
-  background: rgba(15,23,42,0.6);
-  border:1px solid #1e293b;
-}
-
-input, textarea{
-  width:100%;
-  margin-top:10px;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #334155;
-  background:#0b1220;
-  color:white;
-}
-
-textarea{
-  height:120px;
-  resize:none;
-}
-
-/* ANIMAÇÕES */
-@keyframes moveGrid{
-  from{transform:translateY(0);}
-  to{transform:translateY(-40px);}
+.hero h1{
+  font-size:52px;
+  background:linear-gradient(90deg,#38bdf8,#a78bfa,#22d3ee);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation: glow 3s infinite alternate;
 }
 
 @keyframes glow{
-  0%{transform:translate(0,0);}
-  100%{transform:translate(2%,-2%);}
+  from{filter:drop-shadow(0 0 10px #38bdf8)}
+  to{filter:drop-shadow(0 0 25px #a78bfa)}
 }
+
+.typing{
+  margin-top:15px;
+  color:#60a5fa;
+  font-size:18px;
+  border-right:2px solid #60a5fa;
+  white-space:nowrap;
+  overflow:hidden;
+  width:0;
+  animation: typing 4s steps(40,end) forwards, blink 0.8s infinite;
+}
+
+@keyframes typing{
+  from{width:0}
+  to{width:100%}
+}
+
+@keyframes blink{
+  50%{border-color:transparent}
+}
+
+.hero-visual{
+  margin-top:30px;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.character{
+  width:120px;
+  height:120px;
+  border-radius:20px;
+  background:linear-gradient(145deg,#1e293b,#0f172a);
+  border:1px solid #334155;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+  animation: float 4s ease-in-out infinite;
+  box-shadow:0 0 25px rgba(56,189,248,0.2);
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+
+.container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+  padding:40px;
+}
+
+.card{
+  background:rgba(15,23,42,0.8);
+  border:1px solid #1e293b;
+  border-radius:15px;
+  padding:20px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px) scale(1.02);
+  box-shadow:0 0 30px rgba(56,189,248,0.35);
+}
+
+.card h3{
+  color:#38bdf8;
+  margin-bottom:10px;
+}
+
+.neon-btn{
+  margin-top:15px;
+  padding:12px;
+  width:100%;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  color:#000;
+  font-weight:700;
+  background:linear-gradient(90deg,#38bdf8,#a78bfa);
+  box-shadow:0 0 20px #38bdf8;
+  transition:0.3s;
+}
+
+.neon-btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 50px #a78bfa;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  color:#475569;
+}
+
 </style>
 </head>
-
 <body>
-<h1 style="color:red;font-size:50px;">
-SITE ATUALIZADO 
-</h1>
-<div class="container">
 
-  <div class="sidebar">
-    <div class="logo"> NEXUS</div>
+<canvas id="particles"></canvas>
+<div class="background-glow"></div>
 
-    <div class="menu">
-      <a href="#"> Dashboard</a>
-      <a href="#"> Status</a>
-      <a href="#"> Usuários</a>
-      <a href="#"> Chamados</a>
-      <a href="#"> Configurações</a>
-    </div>
-  </div>
+<header>
+  <div class="logo">NEXUS SYSTEM</div>
+  <nav>
+    <button onclick="show('home')">Home</button>
+    <button onclick="show('suporte')">Suporte</button>
+    <button onclick="show('chamados')">Chamados</button>
+  </nav>
+</header>
 
-  <div class="main">
+<section class="hero" id="home">
+  <h1>Sistema Vivo de Suporte</h1>
+  <div class="typing">IA ativa • Monitoramento em tempo real • Experiência futurista</div>
 
-    <div class="header">
-      <h1>Central de Suporte</h1>
-      <button onclick="alert('Chamado aberto!')">+ Novo Chamado</button>
-    </div>
+  <div class="hero-visual">
+    <div class="character">🤖</div>
+    <div class="character">👨‍💻</div>
+    <div class="character">🚀</div>
+    <div class="character">🧠</div>
+  </div>
+</section>
 
-    <div class="cards">
-      <div class="card">
-        <h3>Chamados</h3>
-        <p>Ativos no sistema: 12</p>
-      </div>
+<section class="container" id="suporte">
+  <div class="card">
+    <h3>📡 Sistema Vivo</h3>
+    <p>Monitoramento em tempo real ativo</p>
+    <button class="neon-btn">Ver energia</button>
+  </div>
 
-      <div class="card">
-        <h3>Usuários</h3>
-        <p>Online agora: 48</p>
-      </div>
+  <div class="card">
+    <h3>⚡ Chamado Inteligente</h3>
+    <input placeholder="Descreva o problema" style="width:100%;padding:10px;border-radius:8px;border:none;margin-top:10px;">
+    <button class="neon-btn">Enviar IA</button>
+  </div>
 
-      <div class="card">
-        <h3>Status</h3>
-        <p>Sistema estável</p>
-      </div>
+  <div class="card">
+    <h3>💬 IA Nexus</h3>
+    <p>“Estou analisando seu sistema em tempo real...”</p>
+  </div>
+</section>
 
-      <div class="card">
-        <h3>Alertas</h3>
-        <p>2 críticos</p>
-      </div>
-    </div>
+<section class="container" id="chamados" style="display:none;">
+  <div class="card">
+    <h3>🎫 Chamados</h3>
+    <p>Sistema ativo e monitorando solicitações</p>
+  </div>
+</section>
 
-    <div class="suporte">
-      <h3> Abrir Chamado</h3>
+<footer>
+  Nexus Suporte © 2026 - Sistema vivo inteligente
+</footer>
 
-      <input placeholder="Título do problema">
-      <textarea placeholder="Descreva seu problema..."></textarea>
+<script>
+function show(id){
+  document.querySelectorAll('.container, .hero').forEach(el=>el.style.display='none');
+  document.getElementById(id).style.display='block';
+}
 
-      <button style="margin-top:10px;">Enviar Chamado</button>
-    </div>
+// PARTICLES
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-  </div>
+let particles = [];
+for(let i=0;i<60;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*2,
+    d:Math.random()*1
+  });
+}
 
-</div>
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="rgba(56,189,248,0.6)";
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true);
+    ctx.fill();
+  });
+  update();
+}
+
+function update(){
+  particles.forEach(p=>{
+    p.y += p.d;
+    if(p.y > canvas.height){
+      p.y = 0;
+      p.x = Math.random()*canvas.width;
+    }
+  });
+}
+
+setInterval(draw,33);
+</script>
 
 </body>
 </html>
-
--- 
-@zerovinte1grafica
-
-CONTATO:(21) 98104-8950  - WhatsApp
