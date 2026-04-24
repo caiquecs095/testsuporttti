@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexus Dashboard</title>
+
+<style>
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:system-ui, sans-serif;
+  color:#e5e7eb;
+  background: radial-gradient(circle at top, #0b1220, #050814 70%);
+  overflow-x:hidden;
+}
+
+/* FUNDO FUTURISTA */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image: radial-gradient(rgba(59,130,246,0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity:0.35;
+  animation:gridMove 18s linear infinite;
+  pointer-events:none;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:-50%;
+  background: radial-gradient(circle at 30% 30%, rgba(0,150,255,0.15), transparent 40%),
+              radial-gradient(circle at 70% 60%, rgba(147,51,234,0.12), transparent 45%);
+  filter: blur(60px);
+  animation: floatGlow 12s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+
+/* LAYOUT */
+.container{
+  display:flex;
+  min-height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:260px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(10px);
+  border-right:1px solid #1e293b;
+  padding:20px;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:bold;
+  color:#38bdf8;
+  margin-bottom:30px;
+  text-shadow:0 0 10px #38bdf8;
+}
+
+.menu a{
+  display:block;
+  padding:12px;
+  margin:8px 0;
+  color:#cbd5e1;
+  text-decoration:none;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.menu a:hover{
+  background: rgba(56,189,248,0.1);
+  box-shadow:0 0 10px rgba(56,189,248,0.3);
+  color:#38bdf8;
+}
+
+/* MAIN */
+.main{
+  flex:1;
+  padding:30px;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.header h1{
+  font-size:24px;
+}
+
+.btn{
+  padding:10px 18px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(90deg,#38bdf8,#6366f1);
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 0 15px rgba(56,189,248,0.3);
+}
+
+.btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 25px rgba(56,189,248,0.6);
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.card{
+  background: rgba(15, 23, 42, 0.6);
+  border:1px solid #1e293b;
+  padding:20px;
+  border-radius:16px;
+  backdrop-filter: blur(10px);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 25px rgba(56,189,248,0.2);
+}
+
+.card h3{
+  color:#38bdf8;
+  margin-bottom:10px;
+}
+
+/* SUPORTE */
+.suporte{
+  margin-top:30px;
+  background: rgba(15, 23, 42, 0.6);
+  border:1px solid #1e293b;
+  padding:20px;
+  border-radius:16px;
+}
+
+.suporte input,
+.suporte textarea{
+  width:100%;
+  margin-top:10px;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #334155;
+  background:#0b1220;
+  color:white;
+}
+
+.suporte textarea{
+  height:120px;
+  resize:none;
+}
+
+/* ANIMAÇÕES */
+@keyframes gridMove{
+  from{transform:translateY(0);}
+  to{transform:translateY(-40px);}
+}
+
+@keyframes floatGlow{
+  0%{transform:translate(0,0);}
+  100%{transform:translate(2%,-2%);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="logo">⚡ NEXUS</div>
+
+    <div class="menu">
+      <a href="#">🏠 Dashboard</a>
+      <a href="#">📊 Relatórios</a>
+      <a href="#">👥 Usuários</a>
+      <a href="#">💬 Chamados</a>
+      <a href="#">⚙️ Configurações</a>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <div class="header">
+      <h1>Dashboard Principal</h1>
+      <button class="btn">+ Novo Chamado</button>
+    </div>
+
+    <!-- CARDS -->
+    <div class="cards">
+      <div class="card">
+        <h3>Chamados Abertos</h3>
+        <p>12 ativos no sistema</p>
+      </div>
+
+      <div class="card">
+        <h3>Usuários</h3>
+        <p>48 conectados</p>
+      </div>
+
+      <div class="card">
+        <h3>Performance</h3>
+        <p>99.2% uptime</p>
+      </div>
+
+      <div class="card">
+        <h3>Alertas</h3>
+        <p>2 críticos</p>
+      </div>
+    </div>
+
+    <!-- SUPORTE -->
+    <div class="suporte">
+      <h3>🛠 Abrir Chamado</h3>
+
+      <input type="text" placeholder="Título do problema">
+      <textarea placeholder="Descreva seu problema..."></textarea>
+
+      <button class="btn" style="margin-top:10px;">Enviar Chamado</button>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
